@@ -5,7 +5,7 @@ public class Main {
         System.out.println(occurrences(input, 5));
 
     }
-
+//counts accurences of y in arrray x
     private static int occurrences(int[] x, int y){
         int r = 0;
         for (int number = 0; number < 5; number++){
@@ -16,3 +16,4 @@ public class Main {
         return r;
     }
 }
+
