@@ -199,6 +199,26 @@ public class Main {
                 
  
         //straight
+        
+        if ((max_occurrences(rankings1)[1] == 1 && maximum(rankings1) - minimum(rankings1) == 4) && !(max_occurrences(rankings2)[1] == 1 && maximum(rankings2) - minimum(rankings2) == 4)){
+            return 1;
+        }
+        if ((max_occurrences(rankings2)[1] == 1 && maximum(rankings2) - minimum(rankings2) == 4) && !(max_occurrences(rankings1)[1] == 1 && maximum(rankings1) - minimum(rankings1) == 4)){
+            return 2;
+        }
+        if ((max_occurrences(rankings1)[1] == 1 && maximum(rankings1) - minimum(rankings1) == 4) && (max_occurrences(rankings2)[1] == 1 && maximum(rankings2) - minimum(rankings2) == 4)){
+
+            if (size(rankings1) > size(rankings2)){
+                return 1;
+            }
+            if (size(rankings1) < size(rankings2)){
+                return 2;
+            }
+            else {
+                return 0;
+            }
+        }
+        
         //three-of-a-kind
         //two pairs
         //one pair
