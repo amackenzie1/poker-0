@@ -46,12 +46,14 @@ public class Main {
     //I'm doing this because I think removing items from an array and not replacing them with anything is impossible in Java, right?
 
     private static int[] remove(int[] x, int y){
+        int[] dummyx = new int[x.length]
         for (int number = 0; number < 5; number++){
+            dummyx[number] = x[number]
             if (x[number] == y){
-                x[number] = 0;
+                dummyx[number] = 0;
             }
         }
-        return x;
+        return dummyx;
     }
     private static int maximum(int[] x){
         int r = 0;
@@ -119,13 +121,13 @@ public class Main {
 
             if (max_occurrences(rankings1)[0] == max_occurrences(rankings2)[0]){
 
-                rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
-                rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
+                int[] dummy_rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
+                int[] dummy_rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
 
-                if (maximum(rankings1) > maximum(rankings2)){
+                if (maximum(dummy_rankings1) > maximum(dummy_rankings2)){
                     return 1;
                 }
-                if (maximum(rankings2) > maximum(rankings1)){
+                if (maximum(dummy_rankings2) > maximum(dummy_rankings1)){
                     return 2;
                 }
                 else {
@@ -140,12 +142,39 @@ public class Main {
         //in order from best to worst:
         
         //full house
-        
-        if(max_occurences(rankings1)[1] == 3 && max_occurences(rankings2)[1] < 3){
-            remove(rankings1,maxoccurences(rankings1)[0]);
-            if max_occurences(rankings1[
+        boolean h1HasFH = false;
+        boolean h2HasFH = false;
+        if(max_occurences(rankings1)[1] == 3){
+            int[] dummy_rankings1 = remove(rankings1,maxoccurences(rankings1)[0]);
+            if(max_occurences(dummy_rankings1)[1] == 2){
+                h1HasFH = true;
+                
+            }
               
         }
+        
+         if(max_occurences(rankings2)[1] == 3){
+            int[] dummy_rankings2 = remove(rankings2,maxoccurences(rankings2)[0]);
+            if(max_occurences(dummy_rankings2)[1] == 2){
+                h2HasFH = true;
+                
+            }
+              
+        }
+        
+        if (h1HasFH && !h2HasFH){
+            return 1;
+        }
+        
+        if(h2HasFH && !h1HasFH){
+            return 2;
+        }
+        
+        if(h1HasFH && h2HasFH){
+            
+        }
+        
+        
                 
         //flush
         if (max_occurrences(suits1)[1] == 5 && max_occurrences(suits2)[1] != 5){
