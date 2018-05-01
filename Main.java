@@ -123,6 +123,11 @@ public class Main {
         //in order from best to worst:
         
         //full house
+        if(max_occurences(rankings1)[1] == 3 && max_occurences(rankings2)[1] < 3){
+            remove(rankings1,maxoccurences(rankings1)[0]);
+            if max_occurences(rankings1[
+              
+        }
         //flush
         //straight
         //three-of-a-kind
