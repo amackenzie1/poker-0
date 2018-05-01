@@ -72,6 +72,21 @@ public class Main {
         }
         return r;
     }
+    
+   private static int size(int[] x){
+        int r = 0;
+        r = r + (maximum(x)*50625);
+        x = remove(x, maximum(x));
+        r = r + (maximum(x)*3375);
+        x = remove(x, maximum(x));
+        r = r + (maximum(x)*225);
+        x = remove(x, maximum(x));
+        r = r + (maximum(x)*15);
+        x = remove(x, maximum(x));
+        r = r + (maximum(x));
+
+        return r;
+
 
     //finally the main function
     //if player 1 has the better cards, returns 1. if player 2 has the better cards, it returns 2, and if they are equal, returns 0.
@@ -119,16 +134,41 @@ public class Main {
             }
         }
         
+        
+        
         // check for the rest of possibilities, using a similar process to above
         //in order from best to worst:
         
         //full house
+        
         if(max_occurences(rankings1)[1] == 3 && max_occurences(rankings2)[1] < 3){
             remove(rankings1,maxoccurences(rankings1)[0]);
             if max_occurences(rankings1[
               
         }
+                
         //flush
+        if (max_occurrences(suits1)[1] == 5 && max_occurrences(suits2)[1] != 5){
+            return 1;
+        }
+
+        if (max_occurrences(suits1)[1] != 5 && max_occurrences(suits2)[1] == 5){
+            return 2;
+        }
+
+        if (max_occurrences(suits1)[1] == 5 && max_occurrences(suits2)[1] == 5){
+            if (size(rankings1) > size(rankings2)){
+                return 1;
+            }
+            if (size(rankings1) < size(rankings2)){
+                return 2;
+            }
+            else {
+                return 0;
+            }
+        }
+                
+ 
         //straight
         //three-of-a-kind
         //two pairs
