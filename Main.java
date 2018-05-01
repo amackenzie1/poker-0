@@ -147,7 +147,7 @@ public class Main {
         boolean h2HasFH = false;
         
         if(max_occurences(rankings1)[1] == 3){
-            dummy_rankings1 = remove(rankings1,maxoccurences(rankings1)[0]);
+            dummy_rankings1 = remove(rankings1,max_occurences(rankings1)[0]);
             if(max_occurences(dummy_rankings1)[1] == 2){
                 h1HasFH = true;
                 
@@ -156,7 +156,7 @@ public class Main {
         }
         
          if(max_occurences(rankings2)[1] == 3){
-            dummy_rankings2 = remove(rankings2,maxoccurences(rankings2)[0]);
+            dummy_rankings2 = remove(rankings2,max_occurences(rankings2)[0]);
             if(max_occurences(dummy_rankings2)[1] == 2){
                 h2HasFH = true;
                 
