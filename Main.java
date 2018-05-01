@@ -102,7 +102,8 @@ public class Main {
 
 
         //checking four-of-a-kind
-
+        int[] dummy_rankings1 = new int[rankings1.length];
+        int[] dummy_rankings2 = new int[rankings2.length];
         if (max_occurrences(rankings1)[1] == 4 && max_occurrences(rankings2)[1] != 4){
             return 1;
         }
@@ -121,8 +122,8 @@ public class Main {
 
             if (max_occurrences(rankings1)[0] == max_occurrences(rankings2)[0]){
 
-                int[] dummy_rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
-                int[] dummy_rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
+                dummy_rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
+                dummy_rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
 
                 if (maximum(dummy_rankings1) > maximum(dummy_rankings2)){
                     return 1;
@@ -144,8 +145,9 @@ public class Main {
         //full house
         boolean h1HasFH = false;
         boolean h2HasFH = false;
+        
         if(max_occurences(rankings1)[1] == 3){
-            int[] dummy_rankings1 = remove(rankings1,maxoccurences(rankings1)[0]);
+            dummy_rankings1 = remove(rankings1,maxoccurences(rankings1)[0]);
             if(max_occurences(dummy_rankings1)[1] == 2){
                 h1HasFH = true;
                 
@@ -154,7 +156,7 @@ public class Main {
         }
         
          if(max_occurences(rankings2)[1] == 3){
-            int[] dummy_rankings2 = remove(rankings2,maxoccurences(rankings2)[0]);
+            dummy_rankings2 = remove(rankings2,maxoccurences(rankings2)[0]);
             if(max_occurences(dummy_rankings2)[1] == 2){
                 h2HasFH = true;
                 
@@ -171,6 +173,25 @@ public class Main {
         }
         
         if(h1HasFH && h2HasFH){
+            if (max_occurences(rankings1)[0] > max_occurences(ranking2)[0]){
+                return 1;
+            }
+            
+            if(max_occurences(rankings2)[0] > max_occurences(rankings1)[0]){
+                return 2;
+            }
+            
+            if(max_occurences(dummy_rankings1)[0] > max_occurences(dummy_rankings2)[0]){
+                return 1;
+            }
+            
+            if(max_occurences(dummy_rankings2)[0] > max_occurences(dummy_rankings1)[0]){
+                return 2;
+            }
+            
+            return 0;
+            
+                
             
         }
         
