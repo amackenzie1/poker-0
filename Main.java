@@ -79,7 +79,9 @@ public class Main {
     //rankings are 2 through 14 
     
     private static int hand_comparison(int[] rankings1, int[] rankings2, int[] suits1, int[] suits2){
-        // insert royal-flush checker here
+        
+        // insert straight-flush checker here, because straight-flush is better than 4-of-a-kind, just a bit of a pain to program 
+       
 
 
         //checking four-of-a-kind
@@ -118,6 +120,16 @@ public class Main {
         }
         
         // check for the rest of possibilities, using a similar process to above
+        //in order from best to worst:
+        
+        //full house
+        //flush
+        //straight
+        //three-of-a-kind
+        //two pairs
+        //one pair
+        //high card (meaning nothing)
+        
         // this place is still completely incomplete
         
         return 0; //if we weren't able to determine a winner the hands are equal
