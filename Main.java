@@ -118,6 +118,7 @@ public class Main {
         }
         
         // check for the rest of possibilities, using a similar process to above
+        // this place is still completely incomplete
         
         return 0; //if we weren't able to determine a winner the hands are equal
     }
