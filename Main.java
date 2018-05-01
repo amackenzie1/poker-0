@@ -241,6 +241,54 @@ public class Main {
         }
         
         //three-of-a-kind
+        
+        
+        if (max_occurrences(rankings1)[1] == 3 && max_occurrences(rankings2)[1] != 3){
+            return 1;
+        }
+
+        if (max_occurrences(rankings2)[1] == 3 && max_occurrences(rankings1)[1] != 3){
+            return 2;
+        }
+
+        if (max_occurrences(rankings1)[1] == 3 && max_occurrences(rankings2)[1] == 3){
+
+            if (max_occurrences(rankings1)[0] > max_occurrences(rankings2)[0]){
+                return 1;
+            }
+            if (max_occurrences(rankings2)[0] > max_occurrences(rankings1)[0]){
+                return 2;
+            }
+            if (max_occurrences(rankings1)[0] == max_occurrences(rankings2)[0]){
+
+                rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
+                rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
+
+                if (maximum(rankings1) > maximum(rankings2)){
+                    return 1;
+                }
+                if (maximum(rankings1) < maximum(rankings2)){
+                    return 2;
+                }
+
+                else{
+
+                    rankings1 = remove(rankings1, maximum(rankings1));
+                    rankings2 = remove(rankings2, maximum(rankings2));
+
+                    if (maximum(rankings1) > maximum(rankings2)){
+                        return 1;
+                    }
+                    if (maximum(rankings1) < maximum(rankings2)){
+                        return 2;
+                    }
+                    else {
+                        return 0;
+                    }
+
+                }
+            }
+        }
         //two pairs
         //one pair
         //high card (meaning nothing)
