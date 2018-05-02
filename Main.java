@@ -272,26 +272,29 @@ public class Main {
                 return 2;
             }
             if (max_occurrences(rankings1)[0] == max_occurrences(rankings2)[0]){
+                
+                int[] dummy_rankings1 = new int[rankings1.length];
+                int[] dummy_rankings2 = new int[rankings2.length];
+                
+                dummy_rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
+                dummy_rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
 
-                rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
-                rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
-
-                if (maximum(rankings1) > maximum(rankings2)){
+                if (maximum(dummyrankings1) > maximum(dummy_rankings2)){
                     return 1;
                 }
-                if (maximum(rankings1) < maximum(rankings2)){
+                if (maximum(dummyrankings1) < maximum(dummy_rankings2)){
                     return 2;
                 }
 
                 else{
 
-                    rankings1 = remove(rankings1, maximum(rankings1));
-                    rankings2 = remove(rankings2, maximum(rankings2));
+                    dummy_rankings1 = remove(dummy_rankings1, maximum(dummy_rankings1));
+                    dummy_rankings2 = remove(dummy_rankings2, maximum(dummy_rankings2));
 
-                    if (maximum(rankings1) > maximum(rankings2)){
+                    if (maximum(dummy_rankings1) > maximum(dummy_rankings2)){
                         return 1;
                     }
-                    if (maximum(rankings1) < maximum(rankings2)){
+                    if (maximum(dummy_rankings1) < maximum(dummy_rankings2)){
                         return 2;
                     }
                     else {
@@ -303,3 +306,4 @@ public class Main {
         }
         return 0; //if we weren't able to determine a winner the hands are equal
     }
+}    
