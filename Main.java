@@ -9,8 +9,8 @@ public class Main {
         System.out.println(size(input));
 
 
-        int rankings1[] = {2, 5, 5, 5, 7};
-        int rankings2[] = {2, 2, 7, 7, 6};
+        int rankings1[] = {2, 2, 5, 5, 7};
+        int rankings2[] = {2, 5, 5, 5, 6};
 
         int suits1[] = {1, 2, 3, 3, 4};
         int suits2[] = {4, 3, 3, 3, 3};
@@ -330,6 +330,17 @@ public class Main {
         	}
         	
         	if(higherPair2 > higherPair1) {
+        		return 2;
+        	}
+        	
+        	dummy_rankings1 = remove(dummy_rankings1,max_occurrences(dummy_rankings1)[0]);
+        	dummy_rankings1 = remove(dummy_rankings2,max_occurrences(dummy_rankings2)[0]);
+        	
+        	if(max_occurrences(dummy_rankings1)[0] > max_occurrences(dummy_rankings2)[0]) {
+        		return 1;
+        	}
+        	
+        	if(max_occurrences(dummy_rankings2)[0] > max_occurrences(dummy_rankings1)[0]) {
         		return 2;
         	}
         	
