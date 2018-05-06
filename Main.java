@@ -9,8 +9,8 @@ public class Main {
         System.out.println(size(input));
 
 
-        int rankings1[] = {2, 2, 2, 5, 7};
-        int rankings2[] = {2, 2, 2, 7, 6};
+        int rankings1[] = {2, 5, 5, 5, 7};
+        int rankings2[] = {2, 2, 7, 7, 6};
 
         int suits1[] = {1, 2, 3, 3, 4};
         int suits2[] = {4, 3, 3, 3, 3};
@@ -78,16 +78,17 @@ public class Main {
     }
 
     private static int size(int[] x) {
+    	int[] dummyx = x;
         int r = 0;
-        r = r + (maximum(x) * 50625);
-        x = remove(x, maximum(x));
-        r = r + (maximum(x) * 3375);
-        x = remove(x, maximum(x));
-        r = r + (maximum(x) * 225);
-        x = remove(x, maximum(x));
-        r = r + (maximum(x) * 15);
-        x = remove(x, maximum(x));
-        r = r + (maximum(x));
+        r = r + (maximum(dummyx) * 50625);
+        dummyx = remove(dummyx, maximum(dummyx));
+        r = r + (maximum(dummyx) * 3375);
+        dummyx = remove(dummyx, maximum(dummyx));
+        r = r + (maximum(dummyx) * 225);
+        dummyx = remove(dummyx, maximum(dummyx));
+        r = r + (maximum(dummyx) * 15);
+        dummyx = remove(dummyx, maximum(dummyx));
+        r = r + (maximum(dummyx));
 
         return r;
 
@@ -282,6 +283,62 @@ public class Main {
                 }
             }
         }
+        
+        //2 pairs
+        boolean h1Has2P = false;
+        boolean h2Has2P = false;
+        int higherPair1 = 0;
+        int higherPair2 = 0;
+        
+        if(max_occurrences(rankings1)[1] == 2) {
+        	dummy_rankings1 = remove(rankings1,max_occurrences(rankings1)[0]);
+        	if(max_occurrences(dummy_rankings1)[1] == 2) {
+        		h1Has2P = true;
+        		if(max_occurrences(dummy_rankings1)[0] > max_occurrences(rankings1)[0]) {
+        			higherPair1 = max_occurrences(dummy_rankings1)[0];
+        		}
+        		else {
+        			higherPair1 = max_occurrences(rankings1)[0];
+        		}
+        	}
+        }
+        
+        if(max_occurrences(rankings2)[1] == 2) {
+        	dummy_rankings2 = remove(rankings2,max_occurrences(rankings2)[0]);
+        	if(max_occurrences(dummy_rankings2)[1] == 2) {
+        		h2Has2P = true;
+        		if(max_occurrences(dummy_rankings2)[0] > max_occurrences(rankings2)[0]) {
+        			higherPair2 = max_occurrences(dummy_rankings2)[0];
+        		}
+        		else {
+        			higherPair2 = max_occurrences(rankings2)[0];
+        		}
+        	}
+        }
+        
+        if(h1Has2P && !h2Has2P) {
+        	return 1;
+        }
+        
+        if(h2Has2P && !h1Has2P) {
+        	return 2;
+        }
+        
+        if (h1Has2P && h2Has2P) {
+        	if(higherPair1 > higherPair2) {
+        		return 1;
+        	}
+        	
+        	if(higherPair2 > higherPair1) {
+        		return 2;
+        	}
+        	
+        	return 0;
+        	
+        }
         return 0; //if we weren't able to determine a winner the hands are equal
+        
+        
+        
     }
 }
