@@ -9,8 +9,8 @@ public class Main {
         System.out.println(size(input));
 
 
-        int rankings1[] = {2, 2, 5, 5, 7};
-        int rankings2[] = {2, 5, 5, 5, 6};
+        int rankings1[] = {2, 2, 3, 5, 7};
+        int rankings2[] = {2, 2, 5, 5, 6};
 
         int suits1[] = {1, 2, 3, 3, 4};
         int suits2[] = {4, 3, 3, 3, 3};
@@ -78,7 +78,7 @@ public class Main {
     }
 
     private static int size(int[] x) {
-    	int[] dummyx = x;
+        int[] dummyx = x;
         int r = 0;
         r = r + (maximum(dummyx) * 50625);
         dummyx = remove(dummyx, maximum(dummyx));
@@ -283,126 +283,123 @@ public class Main {
                 }
             }
         }
-        
+
         //2 pairs
         boolean h1Has2P = false;
         boolean h2Has2P = false;
         int higherPair1 = 0;
         int higherPair2 = 0;
-        
-        if(max_occurrences(rankings1)[1] == 2) {
-        	dummy_rankings1 = remove(rankings1,max_occurrences(rankings1)[0]);
-        	if(max_occurrences(dummy_rankings1)[1] == 2) {
-        		h1Has2P = true;
-        		if(max_occurrences(dummy_rankings1)[0] > max_occurrences(rankings1)[0]) {
-        			higherPair1 = max_occurrences(dummy_rankings1)[0];
-        		}
-        		else {
-        			higherPair1 = max_occurrences(rankings1)[0];
-        		}
-        	}
-        }
-        
-        if(max_occurrences(rankings2)[1] == 2) {
-        	dummy_rankings2 = remove(rankings2,max_occurrences(rankings2)[0]);
-        	if(max_occurrences(dummy_rankings2)[1] == 2) {
-        		h2Has2P = true;
-        		if(max_occurrences(dummy_rankings2)[0] > max_occurrences(rankings2)[0]) {
-        			higherPair2 = max_occurrences(dummy_rankings2)[0];
-        		}
-        		else {
-        			higherPair2 = max_occurrences(rankings2)[0];
-        		}
-        	}
-        }
-        
-        if(h1Has2P && !h2Has2P) {
-        	return 1;
-        }
-        
-        if(h2Has2P && !h1Has2P) {
-        	return 2;
-        }
-        
-        if (h1Has2P && h2Has2P) {
-        	if(higherPair1 > higherPair2) {
-        		return 1;
-        	}
-        	
-        	if(higherPair2 > higherPair1) {
-        		return 2;
-        	}
-        	
-        	dummy_rankings1 = remove(dummy_rankings1,max_occurrences(dummy_rankings1)[0]);
-        	dummy_rankings1 = remove(dummy_rankings2,max_occurrences(dummy_rankings2)[0]);
-        	
-        	if(max_occurrences(dummy_rankings1)[0] > max_occurrences(dummy_rankings2)[0]) {
-        		return 1;
-        	}
-        	
-        	if(max_occurrences(dummy_rankings2)[0] > max_occurrences(dummy_rankings1)[0]) {
-        		return 2;
-        	}
-        	
-        	return 0;
-        	
-        }
-        
-        //one pair
-        
-        
-        
-        int test_array1 [] = {0, 0, 0, 0, 0};
-        int test_array2 [] = {0, 0, 0, 0, 0};
 
+        if (max_occurrences(rankings1)[1] == 2) {
+            dummy_rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
+            if (max_occurrences(dummy_rankings1)[1] == 2) {
+                h1Has2P = true;
+                if (max_occurrences(dummy_rankings1)[0] > max_occurrences(rankings1)[0]) {
+                    higherPair1 = max_occurrences(dummy_rankings1)[0];
+                } else {
+                    higherPair1 = max_occurrences(rankings1)[0];
+                }
+            }
+        }
 
-        int pair_array1 [] = {0, 0, 0, 0, 0};
-        int pair_array2 [] = {0, 0, 0, 0, 0};
+        if (max_occurrences(rankings2)[1] == 2) {
+            dummy_rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
+            if (max_occurrences(dummy_rankings2)[1] == 2) {
+                h2Has2P = true;
+                if (max_occurrences(dummy_rankings2)[0] > max_occurrences(rankings2)[0]) {
+                    higherPair2 = max_occurrences(dummy_rankings2)[0];
+                } else {
+                    higherPair2 = max_occurrences(rankings2)[0];
+                }
+            }
+        }
 
-        for (int number = 0; number < 5; number++){
-            test_array1[number] = occurrences(rankings1, rankings1[number]);
-            test_array2[number] = occurrences(rankings2, rankings2[number]);
-
-        
-
-        if (occurrences(test_array1, 2) == 2  && occurrences(test_array2, 2) != 2){
+        if (h1Has2P && !h2Has2P) {
             return 1;
         }
-        if (occurrences(test_array2, 2) == 2  && occurrences(test_array1, 2) != 2){
+
+        if (h2Has2P && !h1Has2P) {
             return 2;
         }
 
-        if (occurrences(test_array2, 2) == 2  && occurrences(test_array1, 2) == 2) {
-
-
-            pair_array1[0] = max_occurrences(rankings1)[0];
-            pair_array2[0] = max_occurrences(rankings2)[0];
-
-            dummy_rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
-            dummy_rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
-
-            if (maximum(pair_array1) > maximum(pair_array2)) {
+        if (h1Has2P && h2Has2P) {
+            if (higherPair1 > higherPair2) {
                 return 1;
             }
 
-            if (maximum(pair_array1) < maximum(pair_array2)) {
+            if (higherPair2 > higherPair1) {
                 return 2;
             }
 
-            if (maximum(pair_array1) == maximum(pair_array2)) {
+            dummy_rankings1 = remove(dummy_rankings1, max_occurrences(dummy_rankings1)[0]);
+            dummy_rankings1 = remove(dummy_rankings2, max_occurrences(dummy_rankings2)[0]);
+
+            if (max_occurrences(dummy_rankings1)[0] > max_occurrences(dummy_rankings2)[0]) {
+                return 1;
+            }
+
+            if (max_occurrences(dummy_rankings2)[0] > max_occurrences(dummy_rankings1)[0]) {
+                return 2;
+            }
+
+            return 0;
+
+        }
+
+        //one pair
 
 
-                if (size(dummy_rankings1) > size(dummy_rankings2)) {
+        int test_array1[] = {0, 0, 0, 0, 0};
+        int test_array2[] = {0, 0, 0, 0, 0};
+
+
+        int pair_array1[] = {0, 0, 0, 0, 0};
+        int pair_array2[] = {0, 0, 0, 0, 0};
+
+        for (int number = 0; number < 5; number++) {
+            test_array1[number] = occurrences(rankings1, rankings1[number]);
+            test_array2[number] = occurrences(rankings2, rankings2[number]);
+
+
+            if (occurrences(test_array1, 2) == 2 && occurrences(test_array2, 2) != 2) {
+                return 1;
+            }
+            if (occurrences(test_array2, 2) == 2 && occurrences(test_array1, 2) != 2) {
+                return 2;
+            }
+
+            if (occurrences(test_array2, 2) == 2 && occurrences(test_array1, 2) == 2) {
+
+
+                pair_array1[0] = max_occurrences(rankings1)[0];
+                pair_array2[0] = max_occurrences(rankings2)[0];
+
+                dummy_rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
+                dummy_rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
+
+                if (maximum(pair_array1) > maximum(pair_array2)) {
                     return 1;
                 }
 
-                if (size(dummy_rankings1) < size(dummy_rankings2)) {
+                if (maximum(pair_array1) < maximum(pair_array2)) {
                     return 2;
-                } else {
-                    return 0;
                 }
 
+                if (maximum(pair_array1) == maximum(pair_array2)) {
 
+
+                    if (size(dummy_rankings1) > size(dummy_rankings2)) {
+                        return 1;
+                    }
+
+                    if (size(dummy_rankings1) < size(dummy_rankings2)) {
+                        return 2;
+                    } else {
+                        return 0;
+                    }
+
+
+                }
             }
         }
 
@@ -415,11 +412,10 @@ public class Main {
         if (size(rankings1) < size(rankings2)) {
             return 2;
         }
-        
-        
+
         return 0; //if we weren't able to determine a winner the hands are equal
-        
-        
-        
+
+
     }
 }
+
