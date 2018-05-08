@@ -347,6 +347,76 @@ public class Main {
         	return 0;
         	
         }
+        
+        //one pair
+        
+        
+        
+        int test_array1 [] = {0, 0, 0, 0, 0};
+        int test_array2 [] = {0, 0, 0, 0, 0};
+
+
+        int pair_array1 [] = {0, 0, 0, 0, 0};
+        int pair_array2 [] = {0, 0, 0, 0, 0};
+
+        for (int number = 0; number < 5; number++){
+            test_array1[number] = occurrences(rankings1, rankings1[number]);
+            test_array2[number] = occurrences(rankings2, rankings2[number]);
+
+        
+
+        if (occurrences(test_array1, 2) == 2  && occurrences(test_array2, 2) != 2){
+            return 1;
+        }
+        if (occurrences(test_array2, 2) == 2  && occurrences(test_array1, 2) != 2){
+            return 2;
+        }
+
+        if (occurrences(test_array2, 2) == 2  && occurrences(test_array1, 2) == 2) {
+
+
+            pair_array1[0] = max_occurrences(rankings1)[0];
+            pair_array2[0] = max_occurrences(rankings2)[0];
+
+            dummy_rankings1 = remove(rankings1, max_occurrences(rankings1)[0]);
+            dummy_rankings2 = remove(rankings2, max_occurrences(rankings2)[0]);
+
+            if (maximum(pair_array1) > maximum(pair_array2)) {
+                return 1;
+            }
+
+            if (maximum(pair_array1) < maximum(pair_array2)) {
+                return 2;
+            }
+
+            if (maximum(pair_array1) == maximum(pair_array2)) {
+
+
+                if (size(dummy_rankings1) > size(dummy_rankings2)) {
+                    return 1;
+                }
+
+                if (size(dummy_rankings1) < size(dummy_rankings2)) {
+                    return 2;
+                } else {
+                    return 0;
+                }
+
+
+            }
+        }
+
+        //high card
+
+        if (size(rankings1) > size(rankings2)) {
+            return 1;
+        }
+
+        if (size(rankings1) < size(rankings2)) {
+            return 2;
+        }
+        
+        
         return 0; //if we weren't able to determine a winner the hands are equal
         
         
