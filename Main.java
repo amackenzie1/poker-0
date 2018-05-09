@@ -94,6 +94,22 @@ public class Main {
 
 
     }
+    
+    private static int[][] converter(int[][] x){
+        int output [][] = {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}};
+        output[0][0] = x[0][0];
+        output[0][1] = x[1][0];
+        output[0][2] = x[2][0];
+        output[0][3] = x[3][0];
+        output[0][4] = x[4][0];
+
+        output[1][0] = x[0][1];
+        output[1][1] = x[1][1];
+        output[1][2] = x[2][1];
+        output[1][3] = x[3][1];
+        output[1][4] = x[4][1];
+        
+        return output;
 
     //finally the main function
     //if player 1 has the better cards, returns 1. if player 2 has the better cards, it returns 2, and if they are equal, returns 0.
