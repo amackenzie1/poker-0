@@ -102,6 +102,31 @@ public class Main {
 
     private static int hand_comparison(int[] rankings1, int[] rankings2, int[] suits1, int[] suits2) {
         // insert royal-flush checker here
+        
+        
+        boolean HASSTRAIGTFLUSH1 = ( (max_occurrences(rankings1)[1] == 1 && maximum(rankings1) - minimum(rankings1) == 4)&& (max_occurrences(suits1)[1] == 5));
+        boolean HASSTRAIGTFLUSH2 = ( (max_occurrences(rankings2)[1] == 1 && maximum(rankings2) - minimum(rankings2) == 4)&& (max_occurrences(suits2)[1] == 5));
+
+
+        if (HASSTRAIGTFLUSH1 && ! HASSTRAIGTFLUSH2){
+            return 1;
+        }
+        if (HASSTRAIGTFLUSH2 && ! HASSTRAIGTFLUSH1){
+            return 2;
+        }
+
+        if (HASSTRAIGTFLUSH2 && HASSTRAIGTFLUSH1){
+
+            if (maximum(rankings1) > maximum(rankings2)){
+                return 1;
+            }
+            if (maximum(rankings1) < maximum(rankings2)){
+                return 2;
+            }
+            else{
+                return 0;
+            }
+        }
 
 
         //checking four-of-a-kind
