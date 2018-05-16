@@ -1,26 +1,26 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
-        int input[] = {1, 2, 3, 4, 5};
-        int input2[] = {2, 2, 2, 6, 6};
-
-
-        System.out.println(occurrences(input, 5));
-        System.out.println(max_occurrences(input2)[1]);
-        System.out.println(size(input));
-
-
-        int rankings1[] = {2, 2, 3, 5, 7};
+    	int rankings1[] = {2, 2, 3, 5, 7};
         int rankings2[] = {2, 2, 5, 5, 6};
 
         int suits1[] = {1, 2, 3, 3, 4};
         int suits2[] = {4, 3, 3, 3, 3};
+    	int r = 0;
+        int randomhand [][] = {{}};
 
+        for (int i = 0; i < 10000; i++){
+            randomhand = converter(getHand());
 
-        System.out.println(hand_comparison(rankings1, rankings2, suits1, suits2));
+            if (hand_comparison(rankings1, randomhand[0], suits1, randomhand[1]) == 1){
+                r = r + 1;
+            }
+        }
 
+        System.out.println(r);
     }
 
     private static int occurrences(int[] x, int y) {
@@ -125,6 +125,7 @@ public class Main {
     	int randomNum = rand.nextInt(deck.size());
     	for (int i = 0; i < 5; i ++) {
     		hand[i] = deck.remove(randomNum);
+    		randomNum = rand.nextInt(deck.size());
     	}
     	return hand;
     	
@@ -479,4 +480,3 @@ public class Main {
 
     }
 }
-
