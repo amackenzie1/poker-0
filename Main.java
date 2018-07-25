@@ -10,14 +10,20 @@ public class Main {
 
 		int suits1[] = { 1, 2, 3, 3, 4 };
 		int suits2[] = { 4, 3, 3, 3, 3 };
+		Card[] hand = new Card[5];
+		for (int i = 0; i < 5; i ++) {
+			Card card = new Card(rankings1[i], suits1[i]);
+			hand[i] = card;
+		}
 		int r = 0;
-		int randomhand[][] = { {} };
+		Hand randomHand;
+		Hand setHand = new Hand(hand);
 		// System.out.println(hand_comparison(rankings1,rankings2,suits1,suits2));
 
 		for (int i = 0; i < 10000; i++) {
-			randomhand = converter(getHand());
+			randomHand = getHand();
 
-			if (hand_comparison(rankings1, randomhand[0], suits1, randomhand[1]) == 1) {
+			if (hand_comparison(randomHand,setHand ) == 1) {
 				r = r + 1;
 
 			}
@@ -25,7 +31,7 @@ public class Main {
 
 		System.out.println(r);
 	}
-
+	
 	private static int occurrences(int[] x, int y) {
 		int r = 0;
 		for (int number = 0; number < 5; number++) {
@@ -101,25 +107,10 @@ public class Main {
 
 	}
 
-	private static int[][] converter(int[][] x) {
-		int output[][] = { { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 } };
-		output[0][0] = x[0][0];
-		output[0][1] = x[1][0];
-		output[0][2] = x[2][0];
-		output[0][3] = x[3][0];
-		output[0][4] = x[4][0];
 
-		output[1][0] = x[0][1];
-		output[1][1] = x[1][1];
-		output[1][2] = x[2][1];
-		output[1][3] = x[3][1];
-		output[1][4] = x[4][1];
 
-		return output;
-	}
-
-	private static int[][] getHand() {
-		int[][] hand = { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+	private static Hand getHand() {
+		Card[] hand = new Card[5];
 		int[][] deckArray = { { 2, 1 }, { 3, 1 }, { 4, 1 }, { 5, 1 }, { 6, 1 }, { 7, 1 }, { 8, 1 }, { 9, 1 }, { 10, 1 },
 				{ 11, 1 }, { 12, 1 }, { 13, 1 }, { 14, 1 }, { 2, 2 }, { 3, 2 }, { 4, 2 }, { 5, 2 }, { 6, 2 }, { 7, 2 },
 				{ 8, 2 }, { 9, 2 }, { 10, 2 }, { 11, 2 }, { 12, 2 }, { 13, 2 }, { 14, 2 }, { 2, 3 }, { 3, 3 }, { 4, 3 },
@@ -130,10 +121,13 @@ public class Main {
 		Random rand = new Random();
 		int randomNum = rand.nextInt(deck.size());
 		for (int i = 0; i < 5; i++) {
-			hand[i] = deck.remove(randomNum);
+			int[] card =  deck.remove(randomNum);
+			Card cardO = new Card(card[0], card[1]);
+			hand[i] = cardO;
 			randomNum = rand.nextInt(deck.size());
 		}
-		return hand;
+		Hand handO = new Hand(hand);
+		return handO;
 
 	}
 	// finally the main function
@@ -142,9 +136,12 @@ public class Main {
 	// suits are 1: spades 2: hearts 3: clubs 4: diamonds
 	// rankings are 2 through 14
 
-	private static int hand_comparison(int[] rankings1, int[] rankings2, int[] suits1, int[] suits2) {
+	private static int hand_comparison(Hand hand1, Hand hand2) {
 		// insert royal-flush checker here
-
+		int[] rankings1 = hand1.getAllRankings();
+		int[] rankings2 = hand2.getAllRankings();
+		int[] suits1 = hand1.getAllSuites();
+		int[] suits2 = hand2.getAllSuites();
 		boolean HASSTRAIGTFLUSH1 = ((max_occurrences(rankings1)[1] == 1 && maximum(rankings1) - minimum(rankings1) == 4)
 				&& (max_occurrences(suits1)[1] == 5));
 		boolean HASSTRAIGTFLUSH2 = ((max_occurrences(rankings2)[1] == 1 && maximum(rankings2) - minimum(rankings2) == 4)
