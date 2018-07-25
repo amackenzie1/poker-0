@@ -1,9 +1,9 @@
 public class Card {
 	int ranking;
-	int suite;
+	int suit;
 	public Card (int ranking, int suite) {
 		this.ranking = ranking;
-		this.suite = suite;
+		this.suit = suite;
 	}
 	
 	public int getRanking() {
@@ -11,7 +11,7 @@ public class Card {
 	}
 	
 	public int getSuite() {
-		return suite;
+		return suit;
 	}
 	
 
